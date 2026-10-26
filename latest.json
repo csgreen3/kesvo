@@ -1,5 +1,5 @@
 {
-  "version": "1.28.0",
-  "apk": "https://github.com/csgreen3/kesvo/releases/download/v1.28.0/kesvo-1.28.0.apk",
-  "notes": "Kesvo 1.28.0."
+  "version": "1.29.0",
+  "apk": "https://github.com/csgreen3/kesvo/releases/download/v1.29.0/kesvo-1.29.0.apk",
+  "notes": "Cast to TV with a Chromecast, and sessions keep going when you switch apps."
 }
