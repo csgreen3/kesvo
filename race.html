@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You've been challenged · Kesvo</title>
+<meta property="og:title" content="You've been challenged on Kesvo">
+<meta property="og:description" content="Race a friend's ghost: swim, bike or run indoors.">
+<meta property="og:image" content="https://csgreen3.github.io/kesvo/img/swim-tablet.jpg">
+<link rel="icon" href="icon.png">
+<style>
+  @font-face { font-family: Inter; font-weight: 400 800; src: url(fonts/Inter-400-800.woff2) format('woff2'); }
+  @font-face { font-family: 'Barlow Condensed'; font-weight: 800; src: url(fonts/BarlowCondensed-800.woff2) format('woff2'); }
+  :root { --swim: #22d3ee; --bike: #fb923c; --run: #f472b6; --brand: linear-gradient(135deg, var(--swim), var(--bike) 55%, var(--run)); }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; font-family: Inter, system-ui, sans-serif; color: #f4f7fb;
+         background: radial-gradient(90% 60% at 85% 0%, rgba(236,72,153,.32), transparent 60%),
+                     radial-gradient(70% 60% at 0% 30%, rgba(34,211,238,.25), transparent 60%), #070b16; }
+  .card { width: min(460px, 100%); display: grid; gap: 16px; text-align: center; }
+  .ghost { font-size: 56px; }
+  h1 { margin: 0; font-size: 34px; letter-spacing: -.03em; line-height: 1.1; }
+  .what { font-size: 18px; color: rgba(244,247,251,.75); margin: 0; }
+  .time { font-family: 'Barlow Condensed', sans-serif; font-size: 96px; font-weight: 800; line-height: 1; }
+  .btn { display: block; padding: 16px; border-radius: 999px; font-weight: 800; font-size: 17px; text-decoration: none; border: 0; cursor: pointer; font-family: inherit; }
+  .main { background: var(--brand); color: #fff; }
+  .quiet { background: rgba(255,255,255,.07); color: #f4f7fb; border: 1px solid rgba(255,255,255,.14); }
+  ol { text-align: left; color: rgba(244,247,251,.75); padding-left: 22px; margin: 0; line-height: 1.6; }
+  .small { font-size: 13px; color: rgba(244,247,251,.55); }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="ghost">👻</div>
+  <h1 id="who">You've been challenged</h1>
+  <p class="what" id="what">&nbsp;</p>
+  <div class="time" id="time">--:--</div>
+  <a class="btn main" id="open" href="#">Race in Kesvo</a>
+  <button class="btn quiet" id="copy" type="button">Copy the challenge</button>
+  <ol>
+    <li>Install Kesvo (free, Android) if you don't have it.</li>
+    <li>Tap <b>Race in Kesvo</b>. On older versions, copy the challenge and paste it into <b>Race a friend</b>.</li>
+    <li>Race their ghost. It swims, rides or runs right beside you.</li>
+  </ol>
+  <a class="btn quiet" href="./">Get Kesvo</a>
+  <p class="small" id="note"></p>
+</div>
+<script>
+  // The same packing as the app's src/challenge.js.
+  const NAME = { swim: 'Swim', bike: 'Bike', run: 'Run' };
+  const hash = location.hash.match(/c=([A-Za-z0-9_-]+)/);
+  const clock = (s) => { s = Math.round(s); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = String(s % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${x}` : `${m}:${x}`; };
+  try {
+    const token = hash[1];
+    const padded = token.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((token.length + 3) % 4);
+    const p = JSON.parse(decodeURIComponent(escape(atob(padded))));
+    const distance = p.s === 'swim' || p.m < 1000 ? `${p.m} m` : `${(p.m / 1000).toFixed(1)} km`;
+    document.getElementById('who').textContent = `${p.n || 'A friend'} challenged you`;
+    document.getElementById('what').textContent = `${NAME[p.s] ?? ''} ${distance} on ${p.r}`;
+    document.getElementById('time').textContent = clock(p.t);
+    document.title = `${p.n || 'A friend'} challenged you · Kesvo`;
+    document.getElementById('open').href = `kesvo://race#c=${token}`;
+  } catch {
+    document.getElementById('what').textContent = 'This link looks incomplete. Ask your friend to send it again.';
+    document.getElementById('copy').hidden = true;
+    document.getElementById('open').hidden = true;
+  }
+  document.getElementById('copy').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      document.getElementById('note').textContent = 'Copied. Now paste it into Race a friend in Kesvo.';
+    } catch {
+      document.getElementById('note').textContent = 'Copy this page\'s address from your browser bar.';
+    }
+  };
+</script>
+</body>
+</html>

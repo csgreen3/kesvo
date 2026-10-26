@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kesvo: swim, bike and run indoors</title>
+<meta name="description" content="Free triathlon training indoors: swim on a stretch cord with your Garmin watch, ride your smart trainer, run on your treadmill, and race your own ghost.">
+<meta property="og:title" content="Kesvo: swim, bike and run indoors">
+<meta property="og:description" content="Free indoor triathlon training with ghost racing, training plans and share cards.">
+<meta property="og:image" content="https://csgreen3.github.io/kesvo/img/swim-tablet.jpg">
+<link rel="icon" href="icon.png">
+<style>
+  @font-face { font-family: Inter; font-weight: 400 800; src: url(fonts/Inter-400-800.woff2) format('woff2'); font-display: swap; }
+  @font-face { font-family: 'Barlow Condensed'; font-weight: 800; src: url(fonts/BarlowCondensed-800.woff2) format('woff2'); font-display: swap; }
+  :root { --swim: #22d3ee; --bike: #fb923c; --run: #f472b6; --brand: linear-gradient(135deg, var(--swim), var(--bike) 55%, var(--run));
+          --text: #f4f7fb; --dim: rgba(244,247,251,.66); --line: rgba(255,255,255,.12); --card: rgba(255,255,255,.05); }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--text); line-height: 1.5;
+         background: radial-gradient(90% 50% at 85% 0%, rgba(236,72,153,.28), transparent 60%),
+                     radial-gradient(70% 50% at 0% 20%, rgba(34,211,238,.22), transparent 60%), #070b16; }
+  a { color: var(--swim); }
+  .wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
+  .logo img { width: 36px; height: 36px; border-radius: 10px; }
+  .hero { display: grid; gap: 40px; align-items: center; padding: 30px 0 60px; }
+  @media (min-width: 900px) { .hero { grid-template-columns: 1fr 1.15fr; } }
+  h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1; letter-spacing: -.04em; margin: 0 0 18px; }
+  .grad { background: var(--brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: 19px; color: var(--dim); margin: 0 0 28px; max-width: 34em; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; font-weight: 800;
+         text-decoration: none; font-size: 17px; }
+  .btn.main { background: var(--brand); color: #fff; box-shadow: 0 16px 40px rgba(236,72,153,.35); }
+  .btn.quiet { color: var(--text); border: 1px solid var(--line); background: var(--card); }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .small { font-size: 13px; color: var(--dim); margin-top: 14px; }
+  .shot { width: 100%; border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.55); border: 1px solid var(--line); display: block; }
+  section { padding: 50px 0; }
+  h2 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.03em; margin: 0 0 12px; line-height: 1.1; }
+  .sub { color: var(--dim); font-size: 17px; margin: 0 0 34px; max-width: 40em; }
+  .features { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .feature { padding: 22px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
+  .feature b { display: block; font-size: 18px; margin: 10px 0 6px; }
+  .feature p { margin: 0; color: var(--dim); font-size: 15px; }
+  .dot { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; font-size: 18px; }
+  .phones { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; }
+  .phones img { width: 100%; border-radius: 26px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+  .phones figcaption { text-align: center; color: var(--dim); font-size: 14px; margin-top: 10px; }
+  .wide { display: grid; gap: 18px; }
+  @media (min-width: 900px) { .wide { grid-template-columns: 1fr 1fr; } }
+  .kit { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .kit div { padding: 18px 20px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+  .kit b { display: block; margin-bottom: 4px; }
+  .kit span { color: var(--dim); font-size: 14px; }
+  ol.steps { padding-left: 22px; color: var(--dim); font-size: 16px; }
+  ol.steps li { margin-bottom: 10px; }
+  ol.steps b { color: var(--text); }
+  details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; margin-bottom: 10px; background: var(--card); }
+  summary { cursor: pointer; font-weight: 700; }
+  details p { color: var(--dim); margin: 10px 0 0; }
+  .version { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; }
+  footer { padding: 40px 0 60px; color: var(--dim); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><img src="icon.png" alt="">Kesvo</div>
+    <a class="btn quiet" href="#download" style="padding:10px 18px;font-size:15px">Download</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Swim, bike and run.<br><span class="grad">Indoors.</span></h1>
+      <p class="lead">The free triathlon trainer for your living room. Swim on a stretch cord with strokes from your Garmin watch,
+        ride your smart trainer, run on your treadmill, and race your own ghost in every one.</p>
+      <div class="btns" id="download">
+        <a class="btn main" id="apk" href="https://github.com/csgreen3/kesvo/releases/latest">⬇ Download for Android</a>
+        <span class="small">Free · No account · <span class="version" id="ver">v1.23</span></span>
+      </div>
+      <p class="small">Android 8 or newer. iPhone is not supported yet.</p>
+    </div>
+    <img class="shot" src="img/swim-tablet.jpg" alt="Swim leg seen from above: a pool lane, the swimmer mid-stroke and a ghost in the next lane, with pace, strokes and stroke rate on the left">
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>One app for all three.</h2>
+    <p class="sub">Every other indoor app does one sport. Kesvo runs a whole triathlon in one session, timing your transitions like race day.</p>
+    <div class="features">
+      <div class="feature"><div class="dot" style="background:rgba(34,211,238,.18);color:var(--swim)">〰</div>
+        <b>Swim on a cord</b><p>Strokes, stroke rate and rhythm come straight from your Garmin watch running the free Swimcord watch app.</p></div>
+      <div class="feature"><div class="dot" style="background:rgba(251,146,60,.18);color:var(--bike)">◎</div>
+        <b>Ride your trainer</b><p>Structured workouts held in ERG, virtual shifting with a Zwift Click, and routes with real climbs.</p></div>
+      <div class="feature"><div class="dot" style="background:rgba(244,114,182,.18);color:var(--run)">➚</div>
+        <b>Run your treadmill</b><p>Speed and incline from your treadmill or a foot pod, with run workouts set from your 5 km time.</p></div>
+      <div class="feature"><div class="dot" style="background:rgba(255,255,255,.08)">👻</div>
+        <b>Race your ghost</b><p>Your best effort on every course swims, rides or runs beside you, with a live gap in seconds.</p></div>
+      <div class="feature"><div class="dot" style="background:rgba(255,255,255,.08)">📅</div>
+        <b>Training plans</b><p>Get started in 4 weeks, or build to a sprint or Olympic triathlon. Built from your own numbers.</p></div>
+      <div class="feature"><div class="dot" style="background:rgba(255,255,255,.08)">🔒</div>
+        <b>Yours, on your device</b><p>No account and no tracking. Sessions are saved as standard .tcx files for Strava or Garmin Connect.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>See it.</h2>
+    <p class="sub">Real screenshots from the app.</p>
+    <div class="phones">
+      <figure style="margin:0"><img src="img/home-phone.jpg" alt="Home screen with weekly rings and today's session"><figcaption>Your week, your streak, today's session</figcaption></figure>
+      <figure style="margin:0"><img src="img/plan-phone.jpg" alt="Sprint triathlon plan, week 1"><figcaption>Training plans that adapt</figcaption></figure>
+      <figure style="margin:0"><img src="img/run-phone.jpg" alt="Run leg from above on a park path"><figcaption>The drone view, on every sport</figcaption></figure>
+      <figure style="margin:0"><img src="img/finish-phone.jpg" alt="Finish screen with a share card"><figcaption>A card worth posting</figcaption></figure>
+    </div>
+    <div class="wide" style="margin-top:18px">
+      <img class="shot" src="img/bike-tablet.jpg" alt="Bike leg on a tablet: power, gears and the road from above">
+      <img class="shot" src="img/swim-tablet.jpg" alt="Swim leg on a tablet">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Swim training without a pool.</h2>
+    <p class="sub">Swimcord is the swim half: a Garmin watch app that counts every pull on a stretch cord, and a phone app with
+      guided cord workouts, a four-week plan and an overhead pool to race your ghost in. Kesvo uses it for swim legs,
+      or use Swimcord on its own.</p>
+    <div class="btns">
+      <a class="btn quiet" href="https://github.com/csgreen3/openride/releases/download/swimcord-v1.1.1/swimcord-1.1.1.apk">⬇ Swimcord phone app</a>
+      <span class="small">The watch app for Fenix 6, 7, 8 and Epix 2 is in review for the Garmin Connect IQ store.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What you need.</h2>
+    <p class="sub">Use what you have. Every sport also works with no sensors at all, so you can try it first.</p>
+    <div class="kit">
+      <div><b>An Android phone or tablet</b><span>Android 8 or newer, with Bluetooth.</span></div>
+      <div><b>Swim: a stretch cord + Garmin watch</b><span>Fenix 6, 7, 8 or Epix 2 with the Swimcord watch app.</span></div>
+      <div><b>Bike: a smart trainer</b><span>Any trainer that speaks Bluetooth FTMS: Wahoo, Tacx, Elite, Zwift Hub and others.</span></div>
+      <div><b>Run: a treadmill or foot pod</b><span>A Bluetooth FTMS treadmill, or a running speed sensor.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Install.</h2>
+    <ol class="steps">
+      <li>On your Android phone, tap <b>Download for Android</b> above and download the <b>.apk</b> file under Assets.</li>
+      <li>Open it. Android asks to allow installs from your browser: tap <b>Settings</b>, turn on <b>Allow from this source</b>, and go back.</li>
+      <li>Tap <b>Install</b>, then open Kesvo. It walks you through the rest.</li>
+      <li>New versions show up on the home screen with a Download button.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <details><summary>Is it really free?</summary><p>Yes. No ads, no account, no trial. Paid extras may come later; what is free now stays free.</p></details>
+    <details><summary>Why is it not on Google Play?</summary><p>It will be. Until then it is installed straight from this site, which is why Android asks for permission.</p></details>
+    <details><summary>Do I need all three machines?</summary><p>No. Use any sport on its own, and any leg without its sensor using the on-screen controls.</p></details>
+    <details><summary>How does swimming work without a pool?</summary><p>You pull on a stretch cord anchored in front of you, the way swimmers train on land. The Swimcord app on your Garmin watch counts every stroke from the watch's motion sensor and sends it to your phone over Bluetooth.</p></details>
+    <details><summary>How do I report a problem or send feedback?</summary><p>In the app, Settings → Beta feedback. Or use the
+      <a href="https://github.com/csgreen3/kesvo/issues/new/choose">feedback forms</a>, including one for telling us which trainer or treadmill you use.</p></details>
+    <details><summary>Where does my data go?</summary><p>Nowhere. It stays on your device. See the <a href="privacy.html">privacy policy</a>.</p></details>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    Kesvo (formerly OpenRide) by Cooper Green · <a href="privacy.html">Privacy</a> · <a href="mailto:coopergreen10@gmail.com">Contact</a>
+  </footer>
+</div>
+
+<script>
+  // Point the button at the APK itself and show the current version.
+  fetch('latest.json', { cache: 'no-store' }).then((r) => r.json()).then((m) => {
+    if (m.apk) document.getElementById('apk').href = m.apk;
+    if (m.version) document.getElementById('ver').textContent = 'v' + m.version;
+  }).catch(() => {});
+</script>
+</body>
+</html>

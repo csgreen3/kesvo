@@ -1,0 +1,30 @@
+name: My equipment works (or does not)
+description: Help build the list of trainers, treadmills and watches that work.
+labels: [equipment, beta]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Make and model
+      placeholder: Tacx Neo 2T
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options: [Smart trainer, Treadmill, Foot pod, Heart rate strap, Garmin watch (Swimcord), Zwift Click, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: works
+    attributes:
+      label: How did it go?
+      options: [Works fully, Connects but something is off, Will not connect]
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: For trainers, whether the workouts held the watts (ERG); for treadmills, whether speed and incline followed.

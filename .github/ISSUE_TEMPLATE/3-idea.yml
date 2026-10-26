@@ -1,0 +1,15 @@
+name: Idea or feedback
+description: What would make you train with Kesvo every week?
+labels: [feedback, beta]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea or feedback
+    validations:
+      required: true
+  - type: dropdown
+    id: would-pay
+    attributes:
+      label: Would you pay for Kesvo with this in it?
+      options: [Yes, Maybe, "No, but I would use it", Not sure yet]
