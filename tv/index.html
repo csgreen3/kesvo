@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kesvo</title>
+<!-- The Kesvo Google Cast receiver: the TV half of src/cast.js. Built by
+     scripts/build-tv.mjs and served from the site at /kesvo/tv/. -->
+<script src="https://www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+<link rel="stylesheet" href="tv.css">
+</head>
+<body class="idle">
+<canvas id="world"></canvas>
+
+<div id="legbar">
+  <div class="track"><i id="fill"></i></div>
+  <div class="foot"><span id="plan"></span><span id="progress"></span></div>
+</div>
+
+<div class="pill-stack" id="numbers">
+  <div class="big"><span id="big-v">0</span><span class="u" id="big-u"></span></div>
+  <div class="big-k" id="big-k"></div>
+  <div class="stats" id="stats"></div>
+</div>
+
+<div class="ghost hidden" id="ghost"><span class="face">👻</span><span class="k" id="ghost-k"></span><span class="gap" id="ghost-gap"></span></div>
+<div class="paused hidden" id="paused">Paused</div>
+<div class="flash" id="flash"></div>
+
+<div class="screen" id="idle">
+  <img src="icon.svg" alt="">
+  <h1>KES<span>VO</span></h1>
+  <p id="idle-text">Connected. Start a session on your phone.</p>
+</div>
+
+<div class="screen hidden" id="finish">
+  <div class="flag">🏁</div>
+  <h2 id="finish-head">Finished</h2>
+  <div class="clock" id="finish-clock"></div>
+</div>
+
+<script src="receiver.js"></script>
+</body>
+</html>

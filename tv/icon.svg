@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108"><defs><linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f472b6"/><stop offset=".5" stop-color="#fb923c"/><stop offset="1" stop-color="#fde047"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".54" r=".5"><stop offset="0" stop-color="#fb923c" stop-opacity=".55"/><stop offset=".45" stop-color="#f472b6" stop-opacity=".22"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/></radialGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070b16"/><stop offset=".7" stop-color="#1e1538"/><stop offset="1" stop-color="#3a1d4a"/></linearGradient>
+<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#070b16"/></linearGradient>
+<linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3354"/><stop offset="1" stop-color="#1c2540"/></linearGradient>
+<clipPath id="above"><rect width="108" height="60"/></clipPath>
+<mask id="bands"><rect width="108" height="108" fill="#fff"/>
+<rect y="46" width="108" height="1.6" fill="#000"/><rect y="52.6" width="108" height="2.1" fill="#000"/><rect y="56.8" width="108" height="2.6" fill="#000"/></mask></defs><rect width="108" height="60" fill="url(#sky)"/>
+<rect x="4" y="12" width="100" height="96" fill="url(#glow)" clip-path="url(#above)"/>
+<circle cx="54" cy="60" r="30" fill="url(#sun)" clip-path="url(#above)" mask="url(#bands)"/>
+<rect y="60" width="108" height="48" fill="url(#ground)"/>
+<path d="M52.2 60 L55.8 60 L100 108 L8 108 Z" fill="url(#road)"/>
+<path d="M52.2 60 L8 108 M55.8 60 L100 108" stroke="#f4f7fb" stroke-width="2.2"/>
+<path d="M53.89 63 L54.11 63 L54.21 66 L53.79 66 Z" fill="#fde68a"/><path d="M53.65 70 L54.35 70 L54.53 75 L53.47 75 Z" fill="#fde68a"/><path d="M53.26 81 L54.74 81 L55.06 90 L52.94 90 Z" fill="#fde68a"/><path d="M52.65 98 L55.35 98 L55.70 108 L52.30 108 Z" fill="#fde68a"/></svg>

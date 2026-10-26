@@ -1,0 +1,48 @@
+@font-face { font-family: Inter; font-weight: 400 800; src: url(../fonts/Inter-400-800.woff2) format('woff2'); }
+@font-face { font-family: Barlow; font-weight: 800; src: url(../fonts/BarlowCondensed-800.woff2) format('woff2'); }
+:root { --swim: #22d3ee; --bike: #fb923c; --run: #f472b6; --brand: linear-gradient(135deg, var(--swim), var(--bike) 55%, var(--run)); --accent: var(--bike); }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #070b16; color: #f4f7fb; font-family: Inter, sans-serif; }
+#world { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.hidden { display: none !important; }
+
+/* TV safe area: 5% in from every edge. */
+#legbar { position: fixed; left: 5vw; right: 5vw; top: 5vh; padding: 14px 22px; border-radius: 22px;
+          background: rgba(7, 11, 22, .62); backdrop-filter: blur(8px); }
+#legbar .track { height: 10px; border-radius: 99px; background: rgba(255,255,255,.14); overflow: hidden; }
+#legbar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .3s linear; }
+#legbar .foot { display: flex; justify-content: space-between; margin-top: 10px; font-size: 26px; font-weight: 700; color: rgba(244,247,251,.85); }
+
+.pill-stack { position: fixed; left: 5vw; top: 19vh; width: 25vw; display: grid; gap: 14px; }
+.big { font-family: Barlow, sans-serif; font-size: 190px; line-height: .9; font-weight: 800; text-shadow: 0 6px 30px rgba(0,0,0,.55); }
+.big .u { font-size: 54px; margin-left: 10px; color: rgba(244,247,251,.8); }
+.big-k { font-size: 26px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-top: -6px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.stat { padding: 14px 18px; border-radius: 20px; background: rgba(7, 11, 22, .62); backdrop-filter: blur(8px); }
+.stat b { font-family: Barlow, sans-serif; font-size: 58px; line-height: 1; display: block; }
+.stat span { font-size: 18px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,247,251,.6); }
+
+.ghost { position: fixed; right: 5vw; top: 19vh; display: flex; align-items: center; gap: 16px; padding: 14px 26px; border-radius: 99px;
+         background: rgba(7, 11, 22, .7); border: 2px solid rgba(255,255,255,.18); font-size: 26px; font-weight: 700; }
+.ghost .face { font-size: 40px; }
+.ghost .gap { font-family: Barlow, sans-serif; font-size: 64px; line-height: 1; }
+.ghost.ahead { border-color: #4ade80; } .ghost.ahead .gap { color: #4ade80; }
+.ghost.behind { border-color: #f87171; } .ghost.behind .gap { color: #f87171; }
+
+.flash { position: fixed; left: 50%; top: 42%; transform: translate(-50%, -50%) scale(.8); opacity: 0; pointer-events: none;
+         font-size: 84px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; padding: 22px 48px; border-radius: 30px;
+         background: var(--brand); color: #070b16; box-shadow: 0 20px 80px rgba(236,72,153,.45); transition: opacity .25s, transform .25s; }
+.flash.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.paused { position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%); font-size: 40px; font-weight: 800; letter-spacing: .2em;
+          text-transform: uppercase; padding: 12px 36px; border-radius: 99px; background: rgba(7,11,22,.75); }
+
+.screen { position: fixed; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px; text-align: center;
+          background: radial-gradient(70% 70% at 80% 0%, rgba(236,72,153,.3), transparent 60%), radial-gradient(60% 70% at 0% 100%, rgba(34,211,238,.22), transparent 60%), rgba(7,11,22,.88); }
+.screen img { width: 190px; height: 190px; border-radius: 44px; box-shadow: 0 24px 80px rgba(236,72,153,.35); }
+.screen h1 { font-family: Barlow, sans-serif; font-size: 150px; margin: 0; line-height: .9; }
+.screen h1 span, .screen h2 { background: var(--brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.screen p { font-size: 34px; margin: 0; color: rgba(244,247,251,.8); }
+.screen .flag { font-size: 120px; }
+.screen h2 { font-size: 96px; margin: 0; letter-spacing: -.03em; max-width: 80vw; }
+.screen .clock { font-family: Barlow, sans-serif; font-size: 170px; line-height: 1; }
+body.idle #legbar, body.idle .pill-stack, body.idle .ghost { display: none; }
